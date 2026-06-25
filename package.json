@@ -1,0 +1,27 @@
+{
+  "name": "todo-app",
+  "version": "1.0.0",
+  "description": "Multi-user Todo App with sharing and collaboration",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,green \"node server/index.js\" \"npx vite client --config client/vite.config.js\"",
+    "dev:server": "node server/index.js",
+    "dev:client": "npx vite client --config client/vite.config.js",
+    "build": "npx vite build client --config client/vite.config.js",
+    "start": "node server/index.js",
+    "share": "npm run build && concurrently -n server,tunnel \"node server/index.js\" \"npx localtunnel --port 3001 --print-requests\"",
+    "test:db": "node server/db.test.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "sql.js": "^1.12.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.0",
+    "localtunnel": "^2.0.2",
+    "vite": "^6.0.0"
+  }
+}

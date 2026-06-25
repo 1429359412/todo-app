@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Todo 待办事项</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<!-- Auth Section -->
+<div class="app" id="authSection">
+  <div class="header">
+    <h1>📋 待办事项</h1>
+  </div>
+
+  <div class="auth-card">
+    <h2 class="auth-title" id="authTitle">登录</h2>
+
+    <div class="auth-field">
+      <label for="authUsername">用户名</label>
+      <input type="text" id="authUsername" placeholder="输入用户名" maxlength="30" autocomplete="username">
+    </div>
+
+    <div class="auth-field">
+      <label for="authPassword">密码</label>
+      <input type="password" id="authPassword" placeholder="输入密码" maxlength="100" autocomplete="current-password">
+    </div>
+
+    <p class="auth-error" id="authError"></p>
+
+    <button class="btn btn-primary btn-block" id="authSubmit">登录</button>
+
+    <p class="auth-switch">
+      <span id="authSwitchText">没有账号？</span>
+      <button class="btn-link" id="authToggle">立即注册</button>
+    </p>
+  </div>
+</div>
+
+<!-- App Section (hidden until login) -->
+<div class="app" id="appSection" style="display:none">
+  <div class="header">
+    <h1>📋 待办事项</h1>
+    <p class="date" id="dateDisplay"></p>
+  </div>
+
+  <div class="user-bar">
+    <div class="user-bar-left">
+      <span class="user-name" id="displayName"></span>
+      <button class="btn-invitations" id="invitationsBtn" style="display:none" title="查看邀请">📨 <span id="invitationsCount">0</span></button>
+    </div>
+    <button class="btn-link btn-logout" id="logoutBtn">退出登录</button>
+  </div>
+  <div class="invitations-dropdown" id="invitationsDropdown" style="display:none"></div>
+
+  <div class="input-group">
+    <input type="text" id="taskInput" placeholder="添加新任务…" maxlength="200" autocomplete="off">
+    <button class="btn btn-primary" id="addBtn">添加</button>
+  </div>
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">全部</button>
+    <button class="filter-btn" data-filter="active">进行中</button>
+    <button class="filter-btn" data-filter="completed">已完成</button>
+  </div>
+
+  <ul class="task-list" id="taskList"></ul>
+
+  <div class="empty-filter" id="emptyFilter">没有匹配的任务</div>
+
+  <div class="stats">
+    <span class="count" id="statsCount"></span>
+    <button class="btn-clear" id="clearCompleted" style="display:none">清除已完成</button>
+  </div>
+
+  <div class="footer">点击复选框标记完成 · 悬停任务可编辑或删除</div>
+</div>
+
+<!-- Share Modal (outside app sections) -->
+<div class="modal-overlay" id="shareModal" style="display:none">
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="shareModalTitle">共享管理</h3>
+      <button class="btn-icon btn-delete" id="closeShareModal">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="share-invite-row">
+        <input type="text" id="inviteUsername" placeholder="输入要邀请的用户名" maxlength="30">
+        <button class="btn btn-primary btn-sm" id="inviteBtn">邀请</button>
+      </div>
+      <p class="auth-error" id="inviteError"></p>
+      <div class="member-list" id="memberList"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>
